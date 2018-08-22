@@ -1,0 +1,40 @@
+
+<template name='future'>
+    <text>{{date}}</text>
+    <text>{{temperature}}</text>
+    <text>{{weather}}</text>
+    <text>{{wind}}</text>
+</template>
+
+<template name='suggestion'>
+  <text>{{tipt}} - {{zs}}</text>
+  <text>{{des}}</text>
+</template>
+
+<!--index.wxml-->
+<view class="container">
+
+  <view class='top'>
+    <view class='topTitle'>
+      <text>{{currentWeather.currentCity}}</text>
+      <text>{{currentWeather.date}}</text>
+    </view>
+    <view class='middleTile'>{{currentWeather.temperature}}</view>
+    <view class='bottomTitle'>
+      <text>{{currentWeather.weatherDesc}}</text>
+      <text>{{currentWeather.wind}}</text>
+    </view>
+  </view>
+
+  <view class='middle'>
+    <view class='futureDay' wx:for="{{originalData.weather_data}}">
+      <template is='future' data="{{...item}}"  wx:key='date' ></template>
+    </view>
+  </view>
+
+  <view class='bottom'>
+    <view class='recomend' wx:for="{{originalData.index}}">
+      <template is="suggestion" data="{{...item}}"></template>
+    </view>
+  </view>
+</view>
